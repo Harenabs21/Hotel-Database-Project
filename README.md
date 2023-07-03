@@ -11,6 +11,7 @@ Here are the main contributors of this project:
 - [Daris02](https://github.com/Daris02)
 - [Sheddy00](https://github.com/Sheddy00)
 - [Onjanirina01](https://github.com/Onjanirina01)
+- [Tiana-Finaritra](https://github.com/Tiana-Finaritra)
 - [Harenabs21](https://github.com/Harenabs21)
 
 ## Project Requirements
