@@ -3,6 +3,9 @@ This repository contains a comprehensive database solution for hotel management,
 
 ---
 ## Conceptual Data Model
+### Version 2.0
+![image_mcd](/image/MCD.v2.png)
+### Version 1.0
 ![image_mcd](/image/MCD.png)
 
 ## Author
