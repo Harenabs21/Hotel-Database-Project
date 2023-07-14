@@ -112,7 +112,7 @@ CREATE TABLE "reservation"(
     date_arrived TIMESTAMP NOT NULL,
     leaving_date TIMESTAMP NOT NULL,
     number_of_person INT NOT NULL,
-    id_client INT REFERENCES client(id),
+    id_client INT REFERENCES customer(id),
     id_room INT REFERENCES room(id)
 );
 -- Alter table "reservation"
@@ -150,7 +150,7 @@ CREATE TABLE "receptionist"(
 -- Relation "use" :
 CREATE TABLE "buy"(
     id SERIAL PRIMARY KEY,
-    id_client INT REFERENCES client(id),
+    id_customer INT REFERENCES customer(id),
     id_service INT REFERENCES service(id)
 );
 
@@ -163,7 +163,7 @@ CREATE TABLE "status_client"(
     status_missing INT NOT NULL,
     is_fidelity BOOLEAN DEFAULT false,
     is_blacklist BOOLEAN DEFAULT false,
-    id_client INT REFERENCES client(id)
+    id_customer INT REFERENCES customer(id)
 );
 -- Alter table "status_client"
 
@@ -201,7 +201,7 @@ CREATE TABLE "payment"(
     deadline_payment TIMESTAMP,
     lending_status BOOLEAN,
     total_amount_status BOOLEAN,
-    id_client INT REFERENCES client(id),
+    id_customer INT REFERENCES customer(id),
     id_payment_method INT REFERENCES payment_method(id),
     id_receptionist INT REFERENCES receptionist(id)
 );
