@@ -13,9 +13,9 @@ DROP TABlE cancel;
 -- ajouter la colomne is_cancel dans reservation
 ALTER TABLE reservation ADD COLUMN is_cancel BOOLEAN ;	
 -- ajouter la colomne id_client foreign key de client dans reservation
-ALTER TABLE reservation ADD COLUMN id_client INT REFERENCES customer(id_client) ;
+ALTER TABLE reservation ADD COLUMN id_client INT REFERENCES customer(id) ;
 -- ajouter la colomne id_client foreign key de client dans payment
-ALTER TABLE payment ADD COLUMN id_client INT REFERENCES customer(id_client);
+ALTER TABLE payment ADD COLUMN id_client INT REFERENCES customer(id);
 -- ajouter la colomne id_hotel foreign key de hotel dans reservation
 ALTER TABLE receptionist ADD COLUMN id_hotel INT REFERENCES hotel(id_hotel);
 -- supprimer la colomne id_promotion dans room
