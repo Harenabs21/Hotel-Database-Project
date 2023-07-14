@@ -1,4 +1,4 @@
-\c postgres; 
+-- \c postgres;
 
 DROP DATABASE IF EXISTS akory;
 
@@ -7,13 +7,13 @@ CREATE DATABASE akory;
 \c akory;
 
 ---------------------------------------------------
--- Create table "province_avaible"
-CREATE TABLE "province_avaible"(
+-- Create table "province_available"
+CREATE TABLE "province_availabble"(
     id SERIAL PRIMARY KEY,
     province_name VARCHAR(200) NOT NULL,
     code_province INT
 );
--- Alter table "province_avaible"
+-- Alter table "province_available"
 
 
 ---------------------------------------------------
@@ -22,7 +22,7 @@ CREATE TABLE "hotel"(
     id VARCHAR(200) PRIMARY KEY,
     name VARCHAR(200),
     address VARCHAR(200),
-    id_province_avaible INT REFERENCES province_avaible(id)  
+    id_province_available INT REFERENCES province_available(id)  
 );
 -- Alter table "hotel"
     -- id INT
@@ -45,7 +45,7 @@ CREATE TABLE "promotion"(
     name VARCHAR(100),
     begin DATE DEFAULT CURRENT_DATE,
     "end" DATE,
-    percent INT NOT NULL
+    prercent INT NOT NULL
 );
 
 
@@ -58,10 +58,6 @@ CREATE TABLE "price"(
 );
 -- Alter table "price"
 
-CREATE TABLE "room_type"(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
-);
 
 ---------------------------------------------------
 -- Create table "rooom_features"
@@ -82,12 +78,12 @@ CREATE TABLE "room_features"(
 CREATE TABLE "room"(
     id SERIAL PRIMARY KEY,
     number VARCHAR(100) NOT NULL,
+    room_type VARCHAR(200) NOT NULL,
     capacity_room INT NOT NULL,
     id_hotel VARCHAR REFERENCES hotel(id),
     id_price INT REFERENCES price(id),
     id_promotion INT REFERENCES promotion(id),
-    id_room_features INT REFERENCES room_features(id),
-    id_room_type INT REFERENCES room_type(id)
+    id_room_features INT REFERENCES room_features(id)
 );
 -- Alter table "room"
 
@@ -102,7 +98,7 @@ CREATE TABLE "client"(
     address VARCHAR(200) NOT NULL,
     emergency_number VARCHAR(50) NOT NULL,
     gender CHAR(1) NOT NULL,
-    CIN VARCHAR(100) NOT NULL,
+    CIN BIGINT NOT NULL,
     email VARCHAR(1) NOT NULL,
     password VARCHAR(50) NOT NULL
 );
