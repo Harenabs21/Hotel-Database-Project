@@ -182,31 +182,31 @@ CREATE TABLE "cancel"(
 
 
 ---------------------------------------------------
--- Create table "payement_method"
-CREATE TABLE "payement_method"(
+-- Create table "payment_method"
+CREATE TABLE "payment_method"(
     id SERIAL PRIMARY KEY,
     mobile_money BOOLEAN,
     credit_card BOOLEAN,
     cash BOOLEAN
 );
--- Alter table "payement_method"
+-- Alter table "payment_method"
     -- remove : all column (-id)
     -- add : name VARCHAR
 
 
 ---------------------------------------------------
--- Create table "payement"
-CREATE TABLE "payement"(
+-- Create table "payment"
+CREATE TABLE "payment"(
     id SERIAL PRIMARY KEY,
-    payement_date DATE NOT NULL,
+    payment_date DATE NOT NULL,
     amount_paid FLOAT NOT NULL,
     number_night INT,
     room_occuped INT,
-    deadline_payement TIMESTAMP,
+    deadline_payment TIMESTAMP,
     lending_status BOOLEAN,
     total_amount_status BOOLEAN,
     id_client INT REFERENCES client(id),
-    id_payement_method INT REFERENCES payement_method(id),
+    id_payment_method INT REFERENCES payment_method(id),
     id_receptionist INT REFERENCES receptionist(id)
 );
 -- Alter table "payement"
