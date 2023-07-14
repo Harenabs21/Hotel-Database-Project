@@ -17,6 +17,6 @@ ALTER TABLE reservation ADD COLUMN id_client INT REFERENCES customer(id) ;
 -- ajouter la colomne id_client foreign key de client dans payment
 ALTER TABLE payment ADD COLUMN id_client INT REFERENCES customer(id);
 -- ajouter la colomne id_hotel foreign key de hotel dans reservation
-ALTER TABLE receptionist ADD COLUMN id_hotel INT REFERENCES hotel(id_hotel);
+ALTER TABLE receptionist ADD COLUMN id_hotel INT REFERENCES hotel(id);
 -- supprimer la colomne id_promotion dans room
 ALTER TABLE room DROP COLUMN id_promotion;
