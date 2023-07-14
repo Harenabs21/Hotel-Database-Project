@@ -1,4 +1,11 @@
-ALTER TABLE hotel ALTER COLUMN id SERIAL PRIMARY KEY; 
+ALTER TABLE "hotel"
+DROP COLUMN id;
+
+ALTER TABLE "hotel"
+ADD COLUMN id SERIAL PRIMARY KEY;
+
+-------------------------
+
 ALTER TABLE hotel ADD COLUMN id_province INT REFERENCES province_available(id);
 
 DROP TABlE cancel;
