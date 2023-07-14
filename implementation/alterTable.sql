@@ -11,7 +11,7 @@ ALTER TABLE hotel ADD COLUMN id_province INT REFERENCES province_available(id);
 -- supprimer la table cancel
 DROP TABlE cancel;
 -- ajouter la colomne is_cancel dans reservation
-ALTER TABLE reservation ADD COLUMN is_cancel BOOLEAN ;	
+ALTER TABLE reservation ADD COLUMN is_cancelled BOOLEAN DEFAULT "f";	
 -- ajouter la colomne id_client foreign key de client dans reservation
 ALTER TABLE reservation ADD COLUMN id_client INT REFERENCES customer(id) ;
 -- ajouter la colomne id_client foreign key de client dans payment
