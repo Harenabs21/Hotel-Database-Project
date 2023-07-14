@@ -8,7 +8,7 @@ CREATE DATABASE akory;
 
 ---------------------------------------------------
 -- Create table "province_available"
-CREATE TABLE "province_availabble"(
+CREATE TABLE "province_available"(
     id SERIAL PRIMARY KEY,
     province_name VARCHAR(200) NOT NULL,
     code_province INT
