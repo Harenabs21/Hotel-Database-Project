@@ -89,8 +89,8 @@ CREATE TABLE "room"(
 
 
 ---------------------------------------------------
--- Create "client"
-CREATE TABLE "client"(
+-- Create "customer"
+CREATE TABLE "customer"(
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     last_name VARCHAR(200) NOT NULL,
