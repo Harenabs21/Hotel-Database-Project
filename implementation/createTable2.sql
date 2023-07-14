@@ -13,7 +13,6 @@ CREATE TABLE "province_available"(
     province_name VARCHAR(200) NOT NULL,
     code_province INT
 );
--- Alter table "province_available"
 
 
 ---------------------------------------------------
@@ -24,8 +23,6 @@ CREATE TABLE "hotel"(
     address VARCHAR(200),
     id_province INT REFERENCES province_available(id)  
 );
--- Alter table "hotel"
-    -- id INT
 
 
 ---------------------------------------------------
@@ -56,7 +53,6 @@ CREATE TABLE "price"(
     cost_per_night FLOAT NOT NULL,
     id_season INT REFERENCES season(id)
 );
--- Alter table "price"
 
 
 ---------------------------------------------------
@@ -84,7 +80,6 @@ CREATE TABLE "room"(
     id_price INT REFERENCES price(id),
     id_room_features INT REFERENCES room_features(id)
 );
--- Alter table "room"
 
 
 -- Change realtion (affiliate) du table
@@ -107,7 +102,6 @@ CREATE TABLE "receptionist"(
     work_contact INT,
     id_hotel INT REFERENCES hotel(id)
 );
--- Alter table "receptionist"
 
 
 ---------------------------------------------------
@@ -123,11 +117,11 @@ CREATE TABLE "customer"(
     CIN BIGINT NOT NULL,
     email VARCHAR(1) NOT NULL,
     password VARCHAR(50) NOT NULL,
-    id_receptionist INT REFERENCES receptionist(id),
-    id_hotel INT REFERENCES hotel(id)
+    id_receptionist INT REFERENCES receptionist(id)
 );
--- Alter table "customer"
 
+
+-----------------------------------------------
 -- Create "feed_back"
 CREATE TABLE "feed_back"(
     id SERIAL PRIMARY KEY,
@@ -135,7 +129,8 @@ CREATE TABLE "feed_back"(
     rating INT,
     id_customer INT REFERENCES customer(id)
 );
---------------------------------------------------
+
+
 
 ---------------------------------------------------
 -- Create table "reservation"
@@ -148,10 +143,6 @@ CREATE TABLE "reservation"(
     id_customer INT REFERENCES customer(id),
     id_room INT REFERENCES room(id)
 );
--- Alter table "reservation"
-    -- reservation_date TIMESTAMP DEFAULT CURRENT_DATE,
-    -- add : is_cancel BOOLEAN DEFAULT 'f',
-    -- drop table : table cancel
 
 
 ---------------------------------------------------
@@ -163,8 +154,6 @@ CREATE TABLE "service"(
     price FLOAT NOT NULL,
     reduction FLOAT
 );
--- Alter table "service"
-
 
 
 ---------------------------------------------------
@@ -186,16 +175,7 @@ CREATE TABLE "customer_status"(
     is_blacklist BOOLEAN DEFAULT false,
     id_customer INT REFERENCES customer(id)
 );
--- Alter table "customer_status"
 
-
----------------------------------------------------
--- Create table "cancel"
--- CREATE TABLE "cancel"(
---     id SERIAL PRIMARY KEY,
---     is_cancel BOOLEAN,
---     id_reservation INT REFERENCES reservation(id)
--- );
 
 ---------------------------------------------------
 -- Create table "payment_method"
@@ -205,9 +185,7 @@ CREATE TABLE "payment_method"(
     credit_card BOOLEAN,
     cash BOOLEAN
 );
--- Alter table "payment_method"
-    -- remove : all column (-id)
-    -- add : name VARCHAR
+
 
 
 ---------------------------------------------------
@@ -225,5 +203,4 @@ CREATE TABLE "payment"(
     id_payment_method INT REFERENCES payment_method(id),
     id_receptionist INT REFERENCES receptionist(id)
 );
--- Alter table "payment"
-    -- payment_date TIMESTAMP
+-----------------------------------------------
