@@ -1,4 +1,4 @@
--- \c postgres;
+\c postgres; 
 
 DROP DATABASE IF EXISTS akory;
 
@@ -45,7 +45,7 @@ CREATE TABLE "promotion"(
     name VARCHAR(100),
     begin DATE DEFAULT CURRENT_DATE,
     "end" DATE,
-    prercent INT NOT NULL
+    percent INT NOT NULL
 );
 
 
@@ -58,6 +58,10 @@ CREATE TABLE "price"(
 );
 -- Alter table "price"
 
+CREATE TABLE "room_type"(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
 
 ---------------------------------------------------
 -- Create table "rooom_features"
@@ -78,12 +82,12 @@ CREATE TABLE "room_features"(
 CREATE TABLE "room"(
     id SERIAL PRIMARY KEY,
     number VARCHAR(100) NOT NULL,
-    room_type VARCHAR(200) NOT NULL,
     capacity_room INT NOT NULL,
     id_hotel VARCHAR REFERENCES hotel(id),
     id_price INT REFERENCES price(id),
     id_promotion INT REFERENCES promotion(id),
-    id_room_features INT REFERENCES room_features(id)
+    id_room_features INT REFERENCES room_features(id),
+    id_room_type INT REFERENCES room_type(id)
 );
 -- Alter table "room"
 
