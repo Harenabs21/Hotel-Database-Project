@@ -98,7 +98,7 @@ CREATE TABLE "client"(
     address VARCHAR(200) NOT NULL,
     emergency_number VARCHAR(50) NOT NULL,
     gender CHAR(1) NOT NULL,
-    CIN BIGINT NOT NULL,
+    CIN VARCHAR(100) NOT NULL,
     email VARCHAR(1) NOT NULL,
     password VARCHAR(50) NOT NULL
 );
