@@ -13,6 +13,8 @@ CREATE TABLE "province_available"(
     province_name VARCHAR(200) NOT NULL,
     code_province INT
 );
+ALTER SEQUENCE province_available_id_seq RESTART WITH 1;
+ALTER TABLE province_available ALTER COLUMN id SET DEFAULT nextval('province_available_id_seq');
 
 
 ---------------------------------------------------
@@ -21,7 +23,7 @@ CREATE TABLE "hotel"(
     id SERIAL PRIMARY KEY,
     name VARCHAR(200),
     address VARCHAR(200),
-    id_province INT REFERENCES province_available(id)  
+    id_province INT REFERENCES province_available(id)
 );
 
 
@@ -30,7 +32,7 @@ CREATE TABLE "hotel"(
 CREATE TABLE "season"(
     id SERIAL PRIMARY KEY,
     items VARCHAR(50),
-    start_date DATE,
+    start_date DATE DEFAULT CURRENT_DATE,
     end_date DATE
 );
 
@@ -42,18 +44,18 @@ CREATE TABLE "promotion"(
     name VARCHAR(100),
     begin DATE DEFAULT CURRENT_DATE,
     "end" DATE,
-    prercent INT NOT NULL
+    percent INT NOT NULL
 );
 
 
 ---------------------------------------------------
 -- Create table "price"
-CREATE TABLE "price"(
+
+CREATE TABLE price (
     id SERIAL PRIMARY KEY,
     cost_per_night FLOAT NOT NULL,
     id_season INT REFERENCES season(id)
 );
-
 
 ---------------------------------------------------
 -- Create table "rooom_features"
@@ -102,6 +104,8 @@ CREATE TABLE "receptionist"(
     work_contact INT,
     id_hotel INT REFERENCES hotel(id)
 );
+ALTER SEQUENCE receptionist_id_seq RESTART WITH 1;
+ALTER TABLE receptionist ALTER COLUMN id SET DEFAULT nextval('receptionist_id_seq');
 
 
 ---------------------------------------------------
@@ -115,11 +119,13 @@ CREATE TABLE "customer"(
     emergency_number VARCHAR(50) NOT NULL,
     gender CHAR(1) NOT NULL,
     CIN BIGINT NOT NULL,
-    email VARCHAR(1) NOT NULL,
+    email VARCHAR(250) NOT NULL,
     password VARCHAR(50) NOT NULL,
     id_receptionist INT REFERENCES receptionist(id)
 );
 
+ALTER SEQUENCE customer_status_id_seq RESTART WITH 1;
+ALTER TABLE customer ALTER COLUMN id SET DEFAULT nextval('customer_id_seq');
 
 -----------------------------------------------
 -- Create "feed_back"
@@ -154,7 +160,8 @@ CREATE TABLE "service"(
     price FLOAT NOT NULL,
     reduction FLOAT
 );
-
+ALTER SEQUENCE service_id_seq RESTART WITH 1;
+ALTER TABLE service ALTER COLUMN id SET DEFAULT nextval('service_id_seq');
 
 ---------------------------------------------------
 -- Relation "use" :
@@ -163,7 +170,8 @@ CREATE TABLE "buy"(
     id_customer INT REFERENCES customer(id),
     id_service INT REFERENCES service(id)
 );
-
+ALTER SEQUENCE buy_id_seq RESTART WITH 1;
+ALTER TABLE buy ALTER COLUMN id SET DEFAULT nextval('buy_id_seq');
 
 ---------------------------------------------------
 -- Create table "customer_status"
@@ -176,7 +184,8 @@ CREATE TABLE "customer_status"(
     id_customer INT REFERENCES customer(id)
 );
 
-
+ALTER SEQUENCE customer_status_id_seq RESTART WITH 1;
+ALTER TABLE customer_status ALTER COLUMN id SET DEFAULT nextval('customer_status_id_seq');
 ---------------------------------------------------
 -- Create table "payment_method"
 CREATE TABLE "payment_method"(
@@ -185,6 +194,8 @@ CREATE TABLE "payment_method"(
     credit_card BOOLEAN,
     cash BOOLEAN
 );
+ALTER SEQUENCE payment_method_id_seq RESTART WITH 1;
+ALTER TABLE payment_method ALTER COLUMN id SET DEFAULT nextval('payment_method_id_seq');
 
 
 
@@ -203,4 +214,6 @@ CREATE TABLE "payment"(
     id_payment_method INT REFERENCES payment_method(id),
     id_receptionist INT REFERENCES receptionist(id)
 );
+ALTER SEQUENCE payment_method_id_seq RESTART WITH 1;
+ALTER TABLE payment ALTER COLUMN id SET DEFAULT nextval('payment_id_seq');
 -----------------------------------------------
