@@ -1,4 +1,4 @@
--- \c postgres;
+\c postgres;
 
 DROP DATABASE IF EXISTS akory;
 
@@ -90,7 +90,7 @@ CREATE TABLE "room"(
     id_price INT REFERENCES price(id),
     id_room_features INT REFERENCES room_features(id)
 );
-ALTER SEQUENCE room_features_id_seq RESTART WITH 1;
+ALTER SEQUENCE room_id_seq RESTART WITH 1;
 ALTER TABLE room ALTER COLUMN id SET DEFAULT nextval('room_id_seq');
 
 -----------------------------------------------------
