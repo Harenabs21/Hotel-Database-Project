@@ -25,7 +25,10 @@ CREATE TABLE "hotel"(
     id_province_avaible INT REFERENCES province_avaible(id)  
 );
 -- Alter table "hotel"
-    -- id INT
+ALTER TABLE "hotel"
+    MODIFY COLUMN id ;
+ALTER TABLE "hotel"
+    ADD COLUMN id_province INT REFERENCES province(id);
 
 
 ---------------------------------------------------
