@@ -1,6 +1,6 @@
 -- DESPLAY ALL ROOM ORDER BY PRICE DESC:
 -->
-    SELECT r.number, r.room_type, r.capacity_room, h.name AS hotel, p.cost_per_night,
+    SELECT r.id, r.number, r.room_type, r.capacity_room, h.name AS hotel, p.cost_per_night,
         CONCAT_WS(', ',
             CASE WHEN rf.sea_view = true THEN 'sea_view' ELSE NULL END,
             CASE WHEN rf.VIP_category = true THEN 'VIP_category' ELSE NULL END,
