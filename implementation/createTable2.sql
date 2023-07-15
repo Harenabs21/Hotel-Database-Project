@@ -13,22 +13,20 @@ CREATE TABLE "province_available"(
     province_name VARCHAR(200) NOT NULL,
     code_province INT
 );
--- Alter table "province_available"
+ALTER SEQUENCE province_available_id_seq RESTART WITH 1;
+ALTER TABLE province_available ALTER COLUMN id SET DEFAULT nextval('province_available_id_seq');
 
 
 ---------------------------------------------------
 -- Create table "hotel"
 CREATE TABLE "hotel"(
-    id VARCHAR(200) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(200),
     address VARCHAR(200),
-    id_province_available INT REFERENCES province_available(id)  
+    id_province INT REFERENCES province_available(id)
 );
--- Alter table "hotel"
-ALTER TABLE "hotel"
-    MODIFY COLUMN id ;
-ALTER TABLE "hotel"
-    ADD COLUMN id_province INT REFERENCES province(id);
+ALTER SEQUENCE hotel_id_seq RESTART WITH 1;
+ALTER TABLE hotel ALTER COLUMN id SET DEFAULT nextval('hotel_id_seq');
 
 
 ---------------------------------------------------
@@ -36,9 +34,11 @@ ALTER TABLE "hotel"
 CREATE TABLE "season"(
     id SERIAL PRIMARY KEY,
     items VARCHAR(50),
-    start_date DATE,
+    start_date DATE DEFAULT CURRENT_DATE,
     end_date DATE
 );
+ALTER SEQUENCE season_id_seq RESTART WITH 1;
+ALTER TABLE season ALTER COLUMN id SET DEFAULT nextval('season_id_seq');
 
 
 ---------------------------------------------------
@@ -48,19 +48,21 @@ CREATE TABLE "promotion"(
     name VARCHAR(100),
     begin DATE DEFAULT CURRENT_DATE,
     "end" DATE,
-    prercent INT NOT NULL
+    percent INT NOT NULL
 );
-
+ALTER SEQUENCE promotion_id_seq RESTART WITH 1;
+ALTER TABLE promotion ALTER COLUMN id SET DEFAULT nextval('promotion_id_seq');
 
 ---------------------------------------------------
 -- Create table "price"
-CREATE TABLE "price"(
+
+CREATE TABLE price (
     id SERIAL PRIMARY KEY,
     cost_per_night FLOAT NOT NULL,
     id_season INT REFERENCES season(id)
 );
--- Alter table "price"
-
+ALTER SEQUENCE price_id_seq RESTART WITH 1;
+ALTER TABLE price ALTER COLUMN id SET DEFAULT nextval('price_id_seq');
 
 ---------------------------------------------------
 -- Create table "rooom_features"
@@ -74,7 +76,8 @@ CREATE TABLE "room_features"(
     mini_bar BOOLEAN,
     flat_screen BOOLEAN
 );
-
+ALTER SEQUENCE room_features_id_seq RESTART WITH 1;
+ALTER TABLE room_features ALTER COLUMN id SET DEFAULT nextval('room_features_id_seq');
 
 ---------------------------------------------------
 -- Create table "room"
@@ -83,12 +86,38 @@ CREATE TABLE "room"(
     number VARCHAR(100) NOT NULL,
     room_type VARCHAR(200) NOT NULL,
     capacity_room INT NOT NULL,
-    id_hotel VARCHAR REFERENCES hotel(id),
+    id_hotel SERIAL REFERENCES hotel(id),
     id_price INT REFERENCES price(id),
-    id_promotion INT REFERENCES promotion(id),
     id_room_features INT REFERENCES room_features(id)
 );
--- Alter table "room"
+ALTER SEQUENCE room_features_id_seq RESTART WITH 1;
+ALTER TABLE room ALTER COLUMN id SET DEFAULT nextval('room_id_seq');
+
+-----------------------------------------------------
+
+-- Change realtion (affiliate) du table
+CREATE TABLE "affiliate"(
+    id SERIAL PRIMARY KEY,
+    id_promotion SERIAL REFERENCES promotion(id),
+    id_room SERIAL REFERENCES room(id)
+);
+ALTER SEQUENCE affiliate_id_seq RESTART WITH 1;
+ALTER TABLE affiliate ALTER COLUMN id SET DEFAULT nextval('affiliate_id_seq');
+
+
+---------------------------------------------------
+-- Create table "receptionist"
+CREATE TABLE "receptionist"(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(200) NOT NULL,
+    last_name VARCHAR(200) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    work_contact INT,
+    id_hotel INT REFERENCES hotel(id)
+);
+ALTER SEQUENCE receptionist_id_seq RESTART WITH 1;
+ALTER TABLE receptionist ALTER COLUMN id SET DEFAULT nextval('receptionist_id_seq');
 
 
 ---------------------------------------------------
@@ -102,10 +131,23 @@ CREATE TABLE "customer"(
     emergency_number VARCHAR(50) NOT NULL,
     gender CHAR(1) NOT NULL,
     CIN BIGINT NOT NULL,
-    email VARCHAR(1) NOT NULL,
-    password VARCHAR(50) NOT NULL
+    email VARCHAR(250) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    id_receptionist INT REFERENCES receptionist(id)
 );
--- Alter table "client"
+
+ALTER SEQUENCE customer_id_seq RESTART WITH 1;  
+ALTER TABLE customer ALTER COLUMN id SET DEFAULT nextval('customer_id_seq');
+
+-----------------------------------------------
+-- Create "feed_back"
+CREATE TABLE "feed_back"(
+    id SERIAL PRIMARY KEY,
+    comment TEXT,
+    rating INT,
+    id_customer INT REFERENCES customer(id)
+);
+
 
 
 ---------------------------------------------------
@@ -115,13 +157,10 @@ CREATE TABLE "reservation"(
     date_arrived TIMESTAMP NOT NULL,
     leaving_date TIMESTAMP NOT NULL,
     number_of_person INT NOT NULL,
-    id_client INT REFERENCES customer(id),
+    is_cancelled BOOLEAN,
+    id_customer INT REFERENCES customer(id),
     id_room INT REFERENCES room(id)
 );
--- Alter table "reservation"
-    -- reservation_date TIMESTAMP DEFAULT CURRENT_DATE,
-    -- add : is_cancel BOOLEAN DEFAULT 'f',
-    -- drop table : table cancel
 
 
 ---------------------------------------------------
@@ -133,21 +172,8 @@ CREATE TABLE "service"(
     price FLOAT NOT NULL,
     reduction FLOAT
 );
--- Alter table "service"
-
-
----------------------------------------------------
--- Create table "receptionist"
-CREATE TABLE "receptionist"(
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(200) NOT NULL,
-    last_name VARCHAR(200) NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    work_contact INT
-);
--- Alter table "receptionist"
-
+ALTER SEQUENCE service_id_seq RESTART WITH 1;
+ALTER TABLE service ALTER COLUMN id SET DEFAULT nextval('service_id_seq');
 
 ---------------------------------------------------
 -- Relation "use" :
@@ -156,11 +182,12 @@ CREATE TABLE "buy"(
     id_customer INT REFERENCES customer(id),
     id_service INT REFERENCES service(id)
 );
-
+ALTER SEQUENCE buy_id_seq RESTART WITH 1;
+ALTER TABLE buy ALTER COLUMN id SET DEFAULT nextval('buy_id_seq');
 
 ---------------------------------------------------
--- Create table "status_client"
-CREATE TABLE "status_client"(
+-- Create table "customer_status"
+CREATE TABLE "customer_status"(
     id SERIAL PRIMARY KEY,
     status_arrived INT NOT NULL,
     status_missing INT NOT NULL,
@@ -168,18 +195,9 @@ CREATE TABLE "status_client"(
     is_blacklist BOOLEAN DEFAULT false,
     id_customer INT REFERENCES customer(id)
 );
--- Alter table "status_client"
 
-
----------------------------------------------------
--- Create table "cancel"
-CREATE TABLE "cancel"(
-    id SERIAL PRIMARY KEY,
-    is_cancel BOOLEAN,
-    id_reservation INT REFERENCES reservation(id)
-);
-
-
+ALTER SEQUENCE customer_status_id_seq RESTART WITH 1;
+ALTER TABLE customer_status ALTER COLUMN id SET DEFAULT nextval('customer_status_id_seq');
 ---------------------------------------------------
 -- Create table "payment_method"
 CREATE TABLE "payment_method"(
@@ -188,9 +206,9 @@ CREATE TABLE "payment_method"(
     credit_card BOOLEAN,
     cash BOOLEAN
 );
--- Alter table "payment_method"
-    -- remove : all column (-id)
-    -- add : name VARCHAR
+ALTER SEQUENCE payment_method_id_seq RESTART WITH 1;
+ALTER TABLE payment_method ALTER COLUMN id SET DEFAULT nextval('payment_method_id_seq');
+
 
 
 ---------------------------------------------------
@@ -208,5 +226,6 @@ CREATE TABLE "payment"(
     id_payment_method INT REFERENCES payment_method(id),
     id_receptionist INT REFERENCES receptionist(id)
 );
--- Alter table "payement"
-    -- payement_date TIMESTAMP
+ALTER SEQUENCE payment_method_id_seq RESTART WITH 1;
+ALTER TABLE payment ALTER COLUMN id SET DEFAULT nextval('payment_id_seq');
+-----------------------------------------------
