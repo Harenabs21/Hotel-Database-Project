@@ -136,7 +136,7 @@ CREATE TABLE "customer"(
     id_receptionist INT REFERENCES receptionist(id)
 );
 
-ALTER SEQUENCE customer_status_id_seq RESTART WITH 1;
+ALTER SEQUENCE customer_id_seq RESTART WITH 1;  
 ALTER TABLE customer ALTER COLUMN id SET DEFAULT nextval('customer_id_seq');
 
 -----------------------------------------------
