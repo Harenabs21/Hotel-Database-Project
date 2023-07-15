@@ -25,6 +25,8 @@ CREATE TABLE "hotel"(
     address VARCHAR(200),
     id_province INT REFERENCES province_available(id)
 );
+ALTER SEQUENCE hotel_id_seq RESTART WITH 1;
+ALTER TABLE hotel ALTER COLUMN id SET DEFAULT nextval('hotel_id_seq');
 
 
 ---------------------------------------------------
@@ -35,6 +37,8 @@ CREATE TABLE "season"(
     start_date DATE DEFAULT CURRENT_DATE,
     end_date DATE
 );
+ALTER SEQUENCE season_id_seq RESTART WITH 1;
+ALTER TABLE season ALTER COLUMN id SET DEFAULT nextval('season_id_seq');
 
 
 ---------------------------------------------------
@@ -46,7 +50,8 @@ CREATE TABLE "promotion"(
     "end" DATE,
     percent INT NOT NULL
 );
-
+ALTER SEQUENCE promotion_id_seq RESTART WITH 1;
+ALTER TABLE promotion ALTER COLUMN id SET DEFAULT nextval('promotion_id_seq');
 
 ---------------------------------------------------
 -- Create table "price"
@@ -56,6 +61,8 @@ CREATE TABLE price (
     cost_per_night FLOAT NOT NULL,
     id_season INT REFERENCES season(id)
 );
+ALTER SEQUENCE price_id_seq RESTART WITH 1;
+ALTER TABLE price ALTER COLUMN id SET DEFAULT nextval('price_id_seq');
 
 ---------------------------------------------------
 -- Create table "rooom_features"
@@ -69,7 +76,8 @@ CREATE TABLE "room_features"(
     mini_bar BOOLEAN,
     flat_screen BOOLEAN
 );
-
+ALTER SEQUENCE room_features_id_seq RESTART WITH 1;
+ALTER TABLE room_features ALTER COLUMN id SET DEFAULT nextval('room_features_id_seq');
 
 ---------------------------------------------------
 -- Create table "room"
@@ -82,7 +90,10 @@ CREATE TABLE "room"(
     id_price INT REFERENCES price(id),
     id_room_features INT REFERENCES room_features(id)
 );
+ALTER SEQUENCE room_features_id_seq RESTART WITH 1;
+ALTER TABLE room ALTER COLUMN id SET DEFAULT nextval('room_id_seq');
 
+-----------------------------------------------------
 
 -- Change realtion (affiliate) du table
 CREATE TABLE "affiliate"(
@@ -90,7 +101,8 @@ CREATE TABLE "affiliate"(
     id_promotion SERIAL REFERENCES promotion(id),
     id_room SERIAL REFERENCES room(id)
 );
-
+ALTER SEQUENCE affiliate_id_seq RESTART WITH 1;
+ALTER TABLE affiliate ALTER COLUMN id SET DEFAULT nextval('affiliate_id_seq');
 
 
 ---------------------------------------------------
