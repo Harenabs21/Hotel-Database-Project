@@ -5,5 +5,5 @@
     p.room_occuped, p.deadline_payment,
     p.lending_status, p.total_amount_status, p.id_customer, 
     rec.first_name, rec.last_name FROM payment p 
-    INNER JOIN receptionist rec ON p.id_receptionist = rec.id;
-                                    -->
+    INNER JOIN receptionist rec ON p.id_receptionist = rec.id;              
+                        -->
