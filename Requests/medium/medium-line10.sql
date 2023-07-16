@@ -1,4 +1,5 @@
--- Afficher les chambres les moins réservés d'un hotel donné
+-- DISPLAY LEAST RESERVED ROOM IN GIVEN HOTEL
+
 -->
     SELECT COUNT(re.id) reservation, ro.number as room_reference, h.name as hotel FROM room ro
     INNER JOIN reservation re ON ro.id = re.id_room
