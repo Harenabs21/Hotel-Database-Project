@@ -10,6 +10,5 @@
     GROUP BY h.name, pay.payment_date;
                         -->
 
-
 -- NOTE:
 -- change params appropriatly
