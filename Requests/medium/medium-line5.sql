@@ -9,4 +9,3 @@ WHERE ro_f.sea_view = true -- or false
     AND ro_f.room_service = true -- or false
     AND ro_f.mini_bar = true -- or false
     AND ro_f.flat_screen = true; -- or false
-

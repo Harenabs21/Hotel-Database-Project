@@ -145,7 +145,8 @@ CREATE TABLE "feed_back"(
     id SERIAL PRIMARY KEY,
     comment TEXT,
     rating INT CHECK (rating BETWEEN 0 AND 10),
-    id_customer INT REFERENCES customer(id)
+    id_customer INT REFERENCES customer(id),
+    id_hotel INT REFERENCES hotel(id)
 );
 ALTER SEQUENCE feed_back_id_seq RESTART WITH 1;  
 ALTER TABLE feed_back ALTER COLUMN id SET DEFAULT nextval('feed_back_id_seq');

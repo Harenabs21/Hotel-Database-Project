@@ -1,4 +1,4 @@
--- DISPLAY HOTEL WITH ROOMS NUMBRE BY HOTEL
+-- DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
 
 -->
     SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
