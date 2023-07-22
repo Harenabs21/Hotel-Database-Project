@@ -2,7 +2,7 @@
 ---> 
     SELECT *
     FROM "reservation" re
-    WHERE re.id_customer = 60; -- <-- Param
+    WHERE re.id_customer = 23; -- <-- Param
                             --->
 
 -- NOTE :
