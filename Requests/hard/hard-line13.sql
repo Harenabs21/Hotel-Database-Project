@@ -1,4 +1,4 @@
--- Afficher le nombre moyen de reservation par hotel, par jour, toute période confondue
+-- Display average number of reservations per hotel, per day, all periods combined
 SELECT name, round(AVG(nombre_reservations)) AS moyenne_reservations_par_jour
 FROM (
     SELECT h.name, res.date_arrived, COUNT(*) AS nombre_reservations
