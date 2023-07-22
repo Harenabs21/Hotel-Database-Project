@@ -1,2 +1,4 @@
--------- Afficher la liste des promotions en cours actuellement
-SELECT * FROM "promotion" WHERE (begin >= current_date);
+-------- DISPLAY THE LIST OF CURRENT PROMOTIONS
+--->
+    SELECT * FROM "promotion" WHERE (begin >= current_date);
+                                                        --->
