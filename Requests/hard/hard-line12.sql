@@ -1,4 +1,5 @@
--- NUMBER OF RESERVATIONS RECEIVED PER HOTEL FOR EACH MONTH OF A GIVEN YEAR 
+
+-- Display the average number of reservations per hotel for each month of a given year
     -->
         SELECT
             round(avg(re.id)) as reservation,
@@ -13,3 +14,4 @@
                 WHERE date_part('year', date_arrived) = '2023' -- ?
             )
         GROUP BY ho.id;
+

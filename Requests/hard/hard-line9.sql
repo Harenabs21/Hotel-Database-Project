@@ -1,4 +1,7 @@
--- Total booking for each hotel reservation
+
+-- For each promotion, display 
+-- the total number of reservations
+-- that benefited from the promotion, by hotel (to know if it worked or not).
     -->
         SELECT
             pr.name as promotion,
