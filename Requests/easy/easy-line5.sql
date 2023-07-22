@@ -10,4 +10,5 @@
             INNER JOIN room ON a.id_room = room.id
             INNER JOIN price ON room.id_price = price.id
             INNER JOIN season s ON price.id_season = s.id
-        GROUP BY s.start_date ASC;
+        GROUP BY s.start_date , s.items, p.name , s.end_date;
+                             -->
