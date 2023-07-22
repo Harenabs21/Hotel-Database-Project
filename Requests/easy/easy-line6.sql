@@ -6,4 +6,4 @@
                             --->
 
 -- NOTE :
--- *Param : paramatre qu'on peut changer
+-- *Param : changeables parameters
