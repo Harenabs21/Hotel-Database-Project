@@ -1,7 +1,4 @@
--- APPLY PRICE REDUCTIOS TO CERTAIN PAYEMENTS,
--- AND LIST THE AMOUNT TO BE PAID BY THE CUSTOMER
-
-
+------- APPLY PRICE REDUCTIONS TO CERTAIN PAYEMENTS, AND LIST THE AMOUNT TO BE PAID BY THE CUSTOMER
 -->
     SELECT
         (((pr.cost_per_night - pr.cost_per_night * (pm.percent / 100)) * DATE_PART('day', res.leaving_date - res.date_arrived)) - se.reduction) AS prix_total,
