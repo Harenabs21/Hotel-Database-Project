@@ -1,6 +1,6 @@
--- Faire une facture avec les montant total a payer et le reste a payer,
--- avec le nom du client et la date reservation (debut et fin)
-    -->
+-------- MAKE AN INVOICE WITH THE TOTAL AMOUNT TO BE PAID AND THE REST TO BE PAID, WITH THE NAME OF THE CUSTOMER
+-------- AND THE DATE OF RESERVATION (BEGINNING AND END)
+--->
         SELECT
             pr.cost_per_night * extract(day from (re.leaving_date - re.date_arrived)) as total_amount,
             pay.amount_paid,
@@ -12,3 +12,4 @@
             INNER JOIN "room" ro ON ro.id = re.id_room
             INNER JOIN "price" pr ON pr.id = ro.id_price
         WHERE cu.id = 23;
+                        --->
