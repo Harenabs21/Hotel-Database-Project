@@ -14,4 +14,3 @@
             )
         GROUP BY ho.id;
                         --->
-
