@@ -20,3 +20,12 @@ ALTER TABLE payment ADD COLUMN id_client INT REFERENCES customer(id);
 ALTER TABLE receptionist ADD COLUMN id_hotel INT REFERENCES hotel(id);
 -- supprimer la colomne id_promotion dans room
 ALTER TABLE room DROP COLUMN id_promotion;
+
+
+-----
+-- For images illustration of hotel, room, customer, receptionnist
+-----
+ALTER TABLE customer ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE hotel ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE room ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE receptionist ADD COLUMN images_paths VARCHAR(300);
