@@ -3465,3 +3465,13 @@ VALUES ('Un excellent service !', 9, 25),
 ('Très mauvaise qualité, produit cassé à l''arrivée.', 1, 89),
 ('Livraison incorrecte, colis mélangés.', 4, 24),
 ('Service client réactif mais pas de solution apportée.', 4, 71);
+
+
+
+-----
+-- For images illustration of hotel, room, customer, receptionnist
+-----
+ALTER TABLE customer ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE hotel ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE room ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE receptionist ADD COLUMN images_paths VARCHAR(300);
