@@ -29,3 +29,4 @@ ALTER TABLE customer ADD COLUMN images_paths VARCHAR(300);
 ALTER TABLE hotel ADD COLUMN images_paths VARCHAR(300);
 ALTER TABLE room ADD COLUMN images_paths VARCHAR(300);
 ALTER TABLE receptionist ADD COLUMN images_paths VARCHAR(300);
+ALTER TABLE room_features ADD COLUMN images_paths VARCHAR(300);
